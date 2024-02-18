@@ -1,7 +1,5 @@
-﻿namespace Cards.Interfaces
+﻿namespace Cards.Interfaces;
+public interface ICardService
 {
-    public interface ICardService
-    {
-        public bool UserHasAccessToCard(int cardId, string userId, string Role);
-    }
+    public bool UserHasAccessToCard(int cardId, string userId, string Role);
 }

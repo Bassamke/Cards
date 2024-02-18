@@ -1,9 +1,7 @@
-﻿namespace Cards.Enums
+﻿namespace Cards.Enums;
+public enum Roles
 {
-    public enum Roles
-    {
-        Admin,
-        Member
+    Admin,
+    Member
 
-    }
 }

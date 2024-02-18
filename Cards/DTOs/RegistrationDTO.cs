@@ -1,13 +1,11 @@
 ﻿using System.ComponentModel;
 
-namespace Cards.DTOs
+namespace Cards.DTOs;
+public class RegistrationDTO
 {
-    public class RegistrationDTO
-    {
-        public required string UserName {  get; set; } 
-        public required string Password { get; set; }
-        public required string Role { get; set; }
+    public required string UserName {  get; set; } 
+    public required string Password { get; set; }
+    public required string Role { get; set; }
 
 
-    }
 }

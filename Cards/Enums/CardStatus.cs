@@ -1,10 +1,8 @@
-﻿namespace Cards.Enums
+﻿namespace Cards.Enums;
+public enum CardStatus
 {
-    public enum CardStatus
-    {
-        ToDo,
-        InProgress,
-        Done
+    ToDo,
+    InProgress,
+    Done
 
-    }
 }

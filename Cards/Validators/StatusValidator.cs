@@ -1,25 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Cards.Validators
+namespace Cards.Validators;
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
+public class StatusValidator : ValidationAttribute
 {
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter, AllowMultiple = false)]
-    public class StatusValidator : ValidationAttribute
+    private readonly string[] allowedValues;
+
+    public StatusValidator(params string[] allowedValues)
     {
-        private readonly string[] allowedValues;
+        this.allowedValues = allowedValues ?? throw new ArgumentNullException(nameof(allowedValues));
+    }
 
-        public StatusValidator(params string[] allowedValues)
+    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    {
+        if (value != null && Array.IndexOf(allowedValues, value.ToString()) == -1)
         {
-            this.allowedValues = allowedValues ?? throw new ArgumentNullException(nameof(allowedValues));
+            return new ValidationResult($"The field {validationContext.DisplayName} must have one of the following values: {string.Join(", ", allowedValues)}.");
         }
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            if (value != null && Array.IndexOf(allowedValues, value.ToString()) == -1)
-            {
-                return new ValidationResult($"The field {validationContext.DisplayName} must have one of the following values: {string.Join(", ", allowedValues)}.");
-            }
-
-            return ValidationResult.Success;
-        }
+        return ValidationResult.Success;
     }
 }
